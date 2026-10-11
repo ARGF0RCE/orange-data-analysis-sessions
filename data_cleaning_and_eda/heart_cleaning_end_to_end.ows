@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="Heart data: cleaning and feature selection" description="End-to-end teaching pipeline. Follow the numbered stages and the implementation guide. EDA/preview branches are separate from validation; preprocessing is fitted inside learner training.">
+  <nodes>
+    <node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="" version="" title="1 Load heart_disease" position="(90, 150)" />
+    <node id="1" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="" version="" title="Raw data audit" position="(90, 320)" />
+    <node id="2" name="Select Columns" qualified_name="Orange.widgets.data.owselectcolumns.OWSelectAttributes" project_name="" version="" title="2 Check features and target" position="(290, 150)" />
+    <node id="3" name="Data Sampler" qualified_name="Orange.widgets.data.owdatasampler.OWDataSampler" project_name="" version="" title="3 Reserve 20% holdout" position="(490, 150)" />
+    <node id="4" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="" version="" title="Training rows only" position="(690, 150)" />
+    <node id="5" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="" version="" title="Untouched holdout rows" position="(690, 510)" />
+    <node id="6" name="Rank" qualified_name="Orange.widgets.data.owrank.OWRank" project_name="" version="" title="4 Explore feature relevance" position="(890, 150)" />
+    <node id="7" name="Scatter Plot" qualified_name="Orange.widgets.visualize.owscatterplot.OWScatterPlot" project_name="" version="" title="Training relationships" position="(290, 320)" />
+    <node id="8" name="Distributions" qualified_name="Orange.widgets.visualize.owdistributions.OWDistributions" project_name="" version="" title="Training distributions" position="(490, 320)" />
+    <node id="9" name="Box Plot" qualified_name="Orange.widgets.visualize.owboxplot.OWBoxPlot" project_name="" version="" title="Training summaries" position="(690, 320)" />
+    <node id="10" name="Preprocess" qualified_name="Orange.widgets.data.owpreprocess.OWPreprocess" project_name="" version="" title="5 Prepare linear model" position="(890, 350)" />
+    <node id="11" name="Preprocess" qualified_name="Orange.widgets.data.owpreprocess.OWPreprocess" project_name="" version="" title="5 Prepare tree models" position="(890, 530)" />
+    <node id="12" name="Constant" qualified_name="Orange.widgets.model.owconstant.OWConstant" project_name="" version="" title="6 Constant baseline" position="(1090, 150)" />
+    <node id="13" name="Logistic Regression" qualified_name="Orange.widgets.model.owlogisticregression.OWLogisticRegression" project_name="" version="" title="6 Logistic regression" position="(1090, 320)" />
+    <node id="14" name="Tree" qualified_name="Orange.widgets.model.owtree.OWTreeLearner" project_name="" version="" title="6 Shallow tree" position="(1090, 500)" />
+    <node id="15" name="Test and Score" qualified_name="Orange.widgets.evaluate.owtestandscore.OWTestAndScore" project_name="" version="" title="7 CV - training only" position="(1290, 200)" />
+    <node id="16" name="Test and Score" qualified_name="Orange.widgets.evaluate.owtestandscore.OWTestAndScore" project_name="" version="" title="7 Holdout - test once" position="(1290, 500)" />
+    <node id="17" name="Predictions" qualified_name="Orange.widgets.evaluate.owpredictions.OWPredictions" project_name="" version="" title="8 Holdout predictions" position="(1490, 500)" />
+    <node id="18" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="" version="" title="Prediction details" position="(1690, 500)" />
+    <node id="19" name="Tree Viewer" qualified_name="Orange.widgets.visualize.owtreeviewer.OWTreeGraph" project_name="" version="" title="8 Interpret training tree" position="(1090, 690)" />
+    <node id="20" name="Confusion Matrix" qualified_name="Orange.widgets.evaluate.owconfusionmatrix.OWConfusionMatrix" project_name="" version="" title="8 CV classification errors" position="(1490, 150)" />
+    <node id="21" name="ROC Analysis" qualified_name="Orange.widgets.evaluate.owrocanalysis.OWROCAnalysis" project_name="" version="" title="8 CV ROC curves" position="(1490, 320)" />
+    <node id="22" name="Preprocess" qualified_name="Orange.widgets.data.owpreprocess.OWPreprocess" project_name="" version="" title="Training cleaning preview only" position="(490, 690)" />
+    <node id="23" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="" version="" title="Cleaned training preview" position="(690, 690)" />
+  </nodes>
+  <links>
+    <link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+    <link id="1" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+    <link id="2" source_node_id="2" sink_node_id="3" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+    <link id="3" source_node_id="3" sink_node_id="4" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="4" source_node_id="3" sink_node_id="6" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="5" source_node_id="3" sink_node_id="7" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="6" source_node_id="3" sink_node_id="8" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="7" source_node_id="3" sink_node_id="9" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="8" source_node_id="3" sink_node_id="5" source_channel="Remaining Data" sink_channel="Data" enabled="true" source_channel_id="remaining_data" sink_channel_id="data" />
+    <link id="9" source_node_id="10" sink_node_id="13" source_channel="Preprocessor" sink_channel="Preprocessor" enabled="true" source_channel_id="preprocessor" sink_channel_id="preprocessor" />
+    <link id="10" source_node_id="11" sink_node_id="14" source_channel="Preprocessor" sink_channel="Preprocessor" enabled="true" source_channel_id="preprocessor" sink_channel_id="preprocessor" />
+    <link id="11" source_node_id="3" sink_node_id="15" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="train_data" />
+    <link id="12" source_node_id="3" sink_node_id="16" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="train_data" />
+    <link id="13" source_node_id="3" sink_node_id="16" source_channel="Remaining Data" sink_channel="Test Data" enabled="true" source_channel_id="remaining_data" sink_channel_id="test_data" />
+    <link id="14" source_node_id="3" sink_node_id="17" source_channel="Remaining Data" sink_channel="Data" enabled="true" source_channel_id="remaining_data" sink_channel_id="data" />
+    <link id="15" source_node_id="17" sink_node_id="18" source_channel="Predictions" sink_channel="Data" enabled="true" source_channel_id="annotated" sink_channel_id="data" />
+    <link id="16" source_node_id="14" sink_node_id="19" source_channel="Model" sink_channel="Tree" enabled="true" source_channel_id="model" sink_channel_id="tree" />
+    <link id="17" source_node_id="15" sink_node_id="20" source_channel="Evaluation Results" sink_channel="Evaluation Results" enabled="true" source_channel_id="evaluations_results" sink_channel_id="evaluation_results" />
+    <link id="18" source_node_id="15" sink_node_id="21" source_channel="Evaluation Results" sink_channel="Evaluation Results" enabled="true" source_channel_id="evaluations_results" sink_channel_id="evaluation_results" />
+    <link id="19" source_node_id="3" sink_node_id="12" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="20" source_node_id="12" sink_node_id="15" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+    <link id="21" source_node_id="12" sink_node_id="16" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+    <link id="22" source_node_id="12" sink_node_id="17" source_channel="Model" sink_channel="Predictors" enabled="true" source_channel_id="model" sink_channel_id="predictors" />
+    <link id="23" source_node_id="3" sink_node_id="13" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="24" source_node_id="13" sink_node_id="15" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+    <link id="25" source_node_id="13" sink_node_id="16" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+    <link id="26" source_node_id="13" sink_node_id="17" source_channel="Model" sink_channel="Predictors" enabled="true" source_channel_id="model" sink_channel_id="predictors" />
+    <link id="27" source_node_id="3" sink_node_id="14" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="28" source_node_id="14" sink_node_id="15" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+    <link id="29" source_node_id="14" sink_node_id="16" source_channel="Learner" sink_channel="Learner" enabled="true" source_channel_id="learner" sink_channel_id="learner" />
+    <link id="30" source_node_id="14" sink_node_id="17" source_channel="Model" sink_channel="Predictors" enabled="true" source_channel_id="model" sink_channel_id="predictors" />
+    <link id="31" source_node_id="3" sink_node_id="22" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+    <link id="32" source_node_id="22" sink_node_id="23" source_channel="Preprocessed Data" sink_channel="Data" enabled="true" source_channel_id="preprocessed_data" sink_channel_id="data" />
+  </links>
+  <annotations>
+    <text id="0" type="text/plain" rect="(10, 20, 380, 60)" font-family="Helvetica" font-size="15">1-2 Load and check roles</text>
+    <text id="1" type="text/plain" rect="(410, 20, 400, 75)" font-family="Helvetica" font-size="15">3 Split first
+Training = Data Sample; holdout = Remaining Data</text>
+    <text id="2" type="text/plain" rect="(830, 20, 370, 75)" font-family="Helvetica" font-size="15">4-6 Explore, preprocess and build
+Preprocessor methods go to learners</text>
+    <text id="3" type="text/plain" rect="(1230, 20, 500, 75)" font-family="Helvetica" font-size="15">7-8 Validate and interpret
+CV uses training only; holdout is a final check</text>
+    <text id="4" type="text/plain" rect="(10, 860, 1680, 65)" font-family="Helvetica" font-size="15">EDA and cleaning previews do not feed scoring. Rank is explanatory; learned selection belongs inside Preprocess. See implementation_guide.md for the teaching sequence and settings.</text>
+  </annotations>
+  <thumbnail />
+  <node_properties>
+    <properties node_id="0" format="pickle">gASV6AAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UjAxyZWNl
+bnRfcGF0aHOUXZSMHm9yYW5nZXdpZGdldC51dGlscy5maWxlZGlhbG9nc5SMClJlY2VudFBhdGiU
+k5QpgZR9lCiMB2Fic3BhdGiUjACUjAZwcmVmaXiUjA9zYW1wbGUtZGF0YXNldHOUjAdyZWxwYXRo
+lIwRaGVhcnRfZGlzZWFzZS50YWKUjAV0aXRsZZRoDIwFc2hlZXSUaAyMC2ZpbGVfZm9ybWF0lE51
+YmGMBnNvdXJjZZRLAHUu
+</properties>
+    <properties node_id="1" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="2" format="pickle">gASVrQIAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNpZ25v
+cmVfbmV3X2ZlYXR1cmVzlImME3NhdmVkV2lkZ2V0R2VvbWV0cnmUTowSdXNlX2lucHV0X2ZlYXR1
+cmVzlImMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UjBVvcmFuZ2V3aWRnZXQu
+c2V0dGluZ3OUjAdDb250ZXh0lJOUKYGUfZQojAZ2YWx1ZXOUfZQojBFkb21haW5fcm9sZV9oaW50
+c5R9lCiMA2FnZZRLAoaUjAlhdHRyaWJ1dGWUSwCGlIwGZ2VuZGVylEsBhpRoFEsBhpSMCmNoZXN0
+IHBhaW6USwGGlGgUSwKGlIwIcmVzdCBTQlCUSwKGlGgUSwOGlIwLY2hvbGVzdGVyb2yUSwKGlGgU
+SwSGlIwZZmFzdGluZyBibG9vZCBzdWdhciA+IDEyMJRLAYaUaBRLBYaUjAhyZXN0IEVDR5RLAYaU
+aBRLBoaUjAZtYXggSFKUSwKGlGgUSweGlIwNZXhlcmMgaW5kIGFuZ5RLAYaUaBRLCIaUjA5TVCBi
+eSBleGVyY2lzZZRLAoaUaBRLCYaUjBFzbG9wZSBwZWFrIGV4YyBTVJRLAYaUaBRLCoaUjBVtYWpv
+ciB2ZXNzZWxzIGNvbG9yZWSUSwKGlGgUSwuGlIwEdGhhbJRLAYaUaBRLDIaUjBJkaWFtZXRlciBu
+YXJyb3dpbmeUSwGGlIwFY2xhc3OUSwCGlHVK/v///4aUaAZLAXWMCmF0dHJpYnV0ZXOUfZQoaBJL
+AmgWSwFoGUsBaBxLAmgfSwJoIksBaCVLAWgoSwJoK0sBaC5LAmgxSwFoNEsCaDdLAWg6SwF1jAVt
+ZXRhc5R9lHViYXUu
+</properties>
+    <properties node_id="3" format="pickle">gASVfAAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsCjBBjb250ZXh0X3NldHRpbmdzlF2UjA1zYW1w
+bGluZ190eXBllEsAjBRzYW1wbGVTaXplUGVyY2VudGFnZZRLUIwIdXNlX3NlZWSUiIwIc3RyYXRp
+ZnmUiIwLcmVwbGFjZW1lbnSUiXUu
+</properties>
+    <properties node_id="4" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="5" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="6" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsEjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="7" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsFjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="8" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsCjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="9" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="10" format="pickle">gASVbgEAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsCjBBjb250ZXh0X3NldHRpbmdzlF2UjA5zdG9y
+ZWRzZXR0aW5nc5R9lIwNcHJlcHJvY2Vzc29yc5RdlCiMGG9yYW5nZS5wcmVwcm9jZXNzLmltcHV0
+ZZR9lIwGbWV0aG9klEsCc4aUjBVvcmFuZ2UucHJlcHJvY2Vzcy5mc3OUfZQojAVzY29yZZRLAowI
+c3RyYXRlZ3mUSwGMAWuUSwh1hpSMHG9yYW5nZS5wcmVwcm9jZXNzLmNvbnRpbnVpemWUfZSMFW11
+bHRpbm9taWFsX3RyZWF0bWVudJSMHE9yYW5nZS5wcmVwcm9jZXNzLnByZXByb2Nlc3OUjB9Db250
+aW51aXplLk11bHRpbm9taWFsVHJlYXRtZW50lJOUSwGFlFKUc4aUjBdvcmFuZ2UucHJlcHJvY2Vz
+cy5zY2FsZZR9lGgKSwJzhpRlc4wKYXV0b2NvbW1pdJSIdS4=
+</properties>
+    <properties node_id="11" format="pickle">gASVxgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsCjBBjb250ZXh0X3NldHRpbmdzlF2UjA5zdG9y
+ZWRzZXR0aW5nc5R9lIwNcHJlcHJvY2Vzc29yc5RdlCiMGG9yYW5nZS5wcmVwcm9jZXNzLmltcHV0
+ZZR9lIwGbWV0aG9klEsCc4aUjBVvcmFuZ2UucHJlcHJvY2Vzcy5mc3OUfZQojAVzY29yZZRLAowI
+c3RyYXRlZ3mUSwGMAWuUSwh1hpRlc4wKYXV0b2NvbW1pdJSIdS4=
+</properties>
+    <properties node_id="12" format="pickle">gASVTQAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UjAxsZWFy
+bmVyX25hbWWUjBFDb25zdGFudCBiYXNlbGluZZR1Lg==
+</properties>
+    <properties node_id="13" format="pickle">gASVigAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsCjBBjb250ZXh0X3NldHRpbmdzlF2UjAxsZWFy
+bmVyX25hbWWUjBNMb2dpc3RpYyByZWdyZXNzaW9ulIwIcmVnX3R5cGWUSwCMDWZpdF9pbnRlcmNl
+cHSUiIwMcGVuYWx0eV90eXBllEsBjAdDX2luZGV4lEs9dS4=
+</properties>
+    <properties node_id="14" format="pickle">gASVqwAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UjAxsZWFy
+bmVyX25hbWWUjAxTaGFsbG93IHRyZWWUjAtsaW1pdF9kZXB0aJSIjAltYXhfZGVwdGiUSwOMDmxp
+bWl0X21pbl9sZWFmlIiMCG1pbl9sZWFmlEsFjBJsaW1pdF9taW5faW50ZXJuYWyUiIwMbWluX2lu
+dGVybmFslEsKdS4=
+</properties>
+    <properties node_id="15" format="pickle">gASVVgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsEjBBjb250ZXh0X3NldHRpbmdzlF2UjApyZXNh
+bXBsaW5nlEsAjAduX2ZvbGRzlEsCjA1jdl9zdHJhdGlmaWVklIh1Lg==
+</properties>
+    <properties node_id="16" format="pickle">gASVOQAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsEjBBjb250ZXh0X3NldHRpbmdzlF2UjApyZXNh
+bXBsaW5nlEsFdS4=
+</properties>
+    <properties node_id="17" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsDjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="18" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="19" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="20" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="21" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+    <properties node_id="22" format="pickle">gASVxgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsCjBBjb250ZXh0X3NldHRpbmdzlF2UjA5zdG9y
+ZWRzZXR0aW5nc5R9lIwNcHJlcHJvY2Vzc29yc5RdlCiMGG9yYW5nZS5wcmVwcm9jZXNzLmltcHV0
+ZZR9lIwGbWV0aG9klEsCc4aUjBVvcmFuZ2UucHJlcHJvY2Vzcy5mc3OUfZQojAVzY29yZZRLAowI
+c3RyYXRlZ3mUSwGMAWuUSwh1hpRlc4wKYXV0b2NvbW1pdJSIdS4=
+</properties>
+    <properties node_id="23" format="pickle">gASVKgAAAAAAAAB9lCiMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UdS4=
+</properties>
+  </node_properties>
+  <session_state>
+    <window_groups />
+  </session_state>
+</scheme>

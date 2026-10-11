@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+pyrightconfig.json
+rehearsal_script.md
+/updated_orange_training.zip

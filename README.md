@@ -1,30 +1,27 @@
-# Orange Data Analysis — four session workflows
+# Orange Data Analysis Sessions
 
-Orange workflows for a four-part data analysis course delivered to spreadsheet-level beginners: getting started, descriptive and inferential statistics, data cleaning and EDA, and multiple-predictor regression.
+Four Orange workflows covering data exploration, preprocessing, feature selection, model building, validation and interpretation.
 
-## Contents
+## Sessions
 
-| Path | Session | What it is |
+| Session | Workflow | Implementation guide |
 |---|---|---|
-| `getting_started/110-file-and-data-table-widget.ows` | 1 | Official Orange example **"File and Data Table"** — `File → Data Table` |
-| `getting_started/120-scatterplot-data-table.ows` | 1 | Official Orange example **"Interactive Visualizations"** — `File → Scatter Plot`, whose **Selected Data** drives a `Data Table` |
-| `getting_started/getting_started.pptx` | 1 | Seven-slide introductory deck |
-| `desc_and_inf_stats/distributions.ows` | 2 | `File → Distributions → Data Table` (heart disease) |
-| `desc_and_inf_stats/selectrows.ows` | 2 | `File → Select Rows → Data Table + Box Plot` (zoo) |
-| `data_cleaning_and_eda/impute.ows` | 3 | `File → Impute` with a raw and an imputed table (heart disease) |
-| `data_cleaning_and_eda/purgedomain.ows` | 3 | `Datasets → Box Plot → Purge Domain → Distributions` |
-| `simple_multivariate_regression/treeviewer-regression.ows` | 4 | `File → Random Forest → Pythagorean Forest → Tree Viewer` (housing, numeric target) |
+| Getting started: Iris classification | [iris_end_to_end.ows](getting_started/iris_end_to_end.ows) | [Guide](getting_started/implementation_guide.md) |
+| Descriptive and inferential statistics | [heart_statistics_end_to_end.ows](desc_and_inf_stats/heart_statistics_end_to_end.ows) | [Guide](desc_and_inf_stats/implementation_guide.md) |
+| Data cleaning and EDA | [heart_cleaning_end_to_end.ows](data_cleaning_and_eda/heart_cleaning_end_to_end.ows) | [Guide](data_cleaning_and_eda/implementation_guide.md) |
+| Simple and multiple regression | [housing_regression_end_to_end.ows](simple_multivariate_regression/housing_regression_end_to_end.ows) | [Guide](simple_multivariate_regression/implementation_guide.md) |
 
-## Running them
+## Run
 
-1. Install Orange 3.x (these were checked against 3.40.0) and open it.
-2. Open a `.ows` file with `File → Open…`. For session 1 you can instead use the app's own **Examples** browser on the Welcome screen and pick "File and Data Table" or "Interactive Visualizations".
-3. Six of the seven workflows read Orange's **bundled** sample datasets (iris, zoo, heart disease, housing) and run offline with no data files.
+Open a main `.ows` file in **Orange 3.40.0** using **File → Open**. The workflows use built-in widgets and bundled sample datasets; no add-ons or separate data downloads are required. Allow Test & Score to finish, then follow the session guide to inspect each stage.
 
-**Exception — `purgedomain.ows`.** Its `Datasets` widget stores `adult.tab`, which is served from Orange's **online** dataset repository and is not shipped with the application, so that workflow opens with empty downstream widgets. Add a `File` widget reading a bundled dataset (for example `heart_disease.tab`) and connect it to the `Box Plot` to use it offline.
+Each workflow reserves a 20% holdout and uses five-fold cross-validation on the training rows. Preprocessing connects to learners so it is fitted within each training fold.
 
-## Provenance
+## References
 
-- `getting_started/110-file-and-data-table-widget.ows` and `getting_started/120-scatterplot-data-table.ows` ship with the Orange application itself (`Orange/canvas/workflows/`), and are browsable in the app under **Welcome → Examples**. Orange3 is licensed GPL-3.0 (see <https://github.com/biolab/orange3>); credit the Orange project (Biolab, University of Ljubljana).
-- The remaining five workflows come from the Orange developers' documentation repository [biolab/orange3-doc-visual-programming](https://github.com/biolab/orange3-doc-visual-programming), under `source/widgets/<category>/workflows/`, and are included here verbatim. That repository declares no licence of its own, so treat these files as upstream material used with attribution; check with the course owner before reusing them outside this course.
-- `getting_started/getting_started.pptx` is original to this course.
+- [Pipeline concepts and connections](docs/pipeline_concepts.md)
+- [Review checklist and reference results](docs/verification/ml_pipeline_verification.md)
+- [Workflow sources and checksums](docs/official_workflows.md)
+- [Introductory presentation](getting_started/getting_started.pptx) and [slide source](getting_started/slides.md)
+
+The smaller `.ows` files in each session folder demonstrate individual widgets. `utils/build_ml_workflows.py` and `utils/verify_ml_workflows.py` maintain and validate the main workflows.

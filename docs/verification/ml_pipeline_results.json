@@ -1,0 +1,532 @@
+{
+  "orange_version": "3.40.0",
+  "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "workflows": [
+    {
+      "workflow": "getting_started/iris_end_to_end.ows",
+      "nodes": 22,
+      "links": 31,
+      "training_rows": 120,
+      "holdout_rows": 30,
+      "training_missing_feature_cells": 0,
+      "disjoint_split": true,
+      "evaluations": [
+        {
+          "widget": "7 CV - training only",
+          "rows_evaluated": 120,
+          "models": [
+            "Constant baseline",
+            "Logistic regression",
+            "Shallow tree"
+          ],
+          "metrics": {
+            "AUC": [
+              0.5,
+              0.9927083333333332,
+              0.9677083333333332
+            ],
+            "CA": [
+              0.3333333333333333,
+              0.9416666666666667,
+              0.9416666666666667
+            ],
+            "F1": [
+              0.24019607843137256,
+              0.9416575506589572,
+              0.9416575506589572
+            ]
+          }
+        },
+        {
+          "widget": "7 Holdout - test once",
+          "rows_evaluated": 30,
+          "models": [
+            "Constant baseline",
+            "Logistic regression",
+            "Shallow tree"
+          ],
+          "metrics": {
+            "AUC": [
+              0.5,
+              1.0,
+              0.9966666666666667
+            ],
+            "CA": [
+              0.3333333333333333,
+              1.0,
+              0.9666666666666667
+            ],
+            "F1": [
+              0.16666666666666666,
+              1.0,
+              0.9665831244778613
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "source": "8 Holdout predictions",
+          "rows": 30,
+          "features": [
+            "sepal length",
+            "sepal width",
+            "petal length",
+            "petal width"
+          ],
+          "metas": [
+            "Constant baseline",
+            "Constant baseline (Iris-setosa)",
+            "Constant baseline (Iris-versicolor)",
+            "Constant baseline (Iris-virginica)",
+            "Constant baseline (error)",
+            "Logistic regression",
+            "Logistic regression (Iris-setosa)",
+            "Logistic regression (Iris-versicolor)",
+            "Logistic regression (Iris-virginica)",
+            "Logistic regression (error)",
+            "Shallow tree",
+            "Shallow tree (Iris-setosa)",
+            "Shallow tree (Iris-versicolor)",
+            "Shallow tree (Iris-virginica)",
+            "Shallow tree (error)",
+            "Selected"
+          ],
+          "missing_feature_cells": 0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "workflow": "desc_and_inf_stats/heart_statistics_end_to_end.ows",
+      "nodes": 24,
+      "links": 33,
+      "training_rows": 243,
+      "holdout_rows": 60,
+      "training_missing_feature_cells": 6,
+      "disjoint_split": true,
+      "evaluations": [
+        {
+          "widget": "7 CV - training only",
+          "rows_evaluated": 243,
+          "models": [
+            "Constant baseline",
+            "Logistic regression",
+            "Shallow tree"
+          ],
+          "metrics": {
+            "AUC": [
+              0.5,
+              0.9090560003603482,
+              0.8385763994459647
+            ],
+            "CA": [
+              0.5432098765432098,
+              0.823045267489712,
+              0.7654320987654321
+            ],
+            "F1": [
+              0.38241975308641973,
+              0.821971798022351,
+              0.7594174308351394
+            ]
+          }
+        },
+        {
+          "widget": "7 Holdout - test once",
+          "rows_evaluated": 60,
+          "models": [
+            "Constant baseline",
+            "Logistic regression",
+            "Shallow tree"
+          ],
+          "metrics": {
+            "AUC": [
+              0.5,
+              0.8660714285714285,
+              0.8309151785714286
+            ],
+            "CA": [
+              0.5333333333333333,
+              0.8,
+              0.7833333333333333
+            ],
+            "F1": [
+              0.3710144927536232,
+              0.8,
+              0.7785378940308518
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "source": "8 Holdout predictions",
+          "rows": 60,
+          "features": [
+            "age",
+            "gender",
+            "chest pain",
+            "rest SBP",
+            "cholesterol",
+            "fasting blood sugar > 120",
+            "rest ECG",
+            "max HR",
+            "exerc ind ang",
+            "ST by exercise",
+            "slope peak exc ST",
+            "major vessels colored",
+            "thal"
+          ],
+          "metas": [
+            "Constant baseline",
+            "Constant baseline (0)",
+            "Constant baseline (1)",
+            "Constant baseline (error)",
+            "Logistic regression",
+            "Logistic regression (0)",
+            "Logistic regression (1)",
+            "Logistic regression (error)",
+            "Shallow tree",
+            "Shallow tree (0)",
+            "Shallow tree (1)",
+            "Shallow tree (error)",
+            "Selected"
+          ],
+          "missing_feature_cells": 0
+        },
+        {
+          "source": "EDA subgroup - glucose = 1",
+          "rows": 42,
+          "features": [
+            "age",
+            "gender",
+            "chest pain",
+            "rest SBP",
+            "cholesterol",
+            "fasting blood sugar > 120",
+            "rest ECG",
+            "max HR",
+            "exerc ind ang",
+            "ST by exercise",
+            "slope peak exc ST",
+            "major vessels colored",
+            "thal"
+          ],
+          "metas": [],
+          "missing_feature_cells": 2
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "workflow": "data_cleaning_and_eda/heart_cleaning_end_to_end.ows",
+      "nodes": 24,
+      "links": 33,
+      "training_rows": 243,
+      "holdout_rows": 60,
+      "training_missing_feature_cells": 6,
+      "disjoint_split": true,
+      "evaluations": [
+        {
+          "widget": "7 CV - training only",
+          "rows_evaluated": 243,
+          "models": [
+            "Constant baseline",
+            "Logistic regression",
+            "Shallow tree"
+          ],
+          "metrics": {
+            "AUC": [
+              0.5,
+              0.9049835028095897,
+              0.8331891940587595
+            ],
+            "CA": [
+              0.5432098765432098,
+              0.8395061728395061,
+              0.7654320987654321
+            ],
+            "F1": [
+              0.38241975308641973,
+              0.8385325609970159,
+              0.7594174308351394
+            ]
+          }
+        },
+        {
+          "widget": "7 Holdout - test once",
+          "rows_evaluated": 60,
+          "models": [
+            "Constant baseline",
+            "Logistic regression",
+            "Shallow tree"
+          ],
+          "metrics": {
+            "AUC": [
+              0.5,
+              0.8604910714285714,
+              0.8309151785714286
+            ],
+            "CA": [
+              0.5333333333333333,
+              0.8,
+              0.7833333333333333
+            ],
+            "F1": [
+              0.3710144927536232,
+              0.7981900452488688,
+              0.7785378940308518
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "source": "8 Holdout predictions",
+          "rows": 60,
+          "features": [
+            "age",
+            "gender",
+            "chest pain",
+            "rest SBP",
+            "cholesterol",
+            "fasting blood sugar > 120",
+            "rest ECG",
+            "max HR",
+            "exerc ind ang",
+            "ST by exercise",
+            "slope peak exc ST",
+            "major vessels colored",
+            "thal"
+          ],
+          "metas": [
+            "Constant baseline",
+            "Constant baseline (0)",
+            "Constant baseline (1)",
+            "Constant baseline (error)",
+            "Logistic regression",
+            "Logistic regression (0)",
+            "Logistic regression (1)",
+            "Logistic regression (error)",
+            "Shallow tree",
+            "Shallow tree (0)",
+            "Shallow tree (1)",
+            "Shallow tree (error)",
+            "Selected"
+          ],
+          "missing_feature_cells": 0
+        },
+        {
+          "source": "Training cleaning preview only",
+          "rows": 243,
+          "features": [
+            "chest pain",
+            "thal",
+            "major vessels colored",
+            "ST by exercise",
+            "exerc ind ang",
+            "max HR",
+            "slope peak exc ST",
+            "gender"
+          ],
+          "metas": [],
+          "missing_feature_cells": 0
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "workflow": "simple_multivariate_regression/housing_regression_end_to_end.ows",
+      "nodes": 29,
+      "links": 47,
+      "training_rows": 405,
+      "holdout_rows": 101,
+      "training_missing_feature_cells": 0,
+      "disjoint_split": true,
+      "evaluations": [
+        {
+          "widget": "7 CV - training only",
+          "rows_evaluated": 405,
+          "models": [
+            "Constant baseline",
+            "Multiple linear",
+            "Shallow tree",
+            "Random forest"
+          ],
+          "metrics": {
+            "RMSE": [
+              9.389761128224459,
+              4.957949426062776,
+              5.235211391960668,
+              3.6721647312715953
+            ],
+            "MAE": [
+              6.8397226032616985,
+              3.4964840485549264,
+              3.6003118992266954,
+              2.477836797057766
+            ],
+            "R2": [
+              -0.007211271419465648,
+              0.719187992832264,
+              0.6869022589063554,
+              0.8459520939869092
+            ]
+          }
+        },
+        {
+          "widget": "7 Holdout - test once",
+          "rows_evaluated": 101,
+          "models": [
+            "Constant baseline",
+            "Multiple linear",
+            "Shallow tree",
+            "Random forest"
+          ],
+          "metrics": {
+            "RMSE": [
+              8.480873376372791,
+              4.742021110460027,
+              5.265223712861964,
+              3.1136681529198516
+            ],
+            "MAE": [
+              5.9692311453367575,
+              3.1777046333381547,
+              3.7044598920286287,
+              2.1715219335468223
+            ],
+            "R2": [
+              -0.0002615618402208586,
+              0.6872773137177972,
+              0.61446298631661,
+              0.8651729379015807
+            ]
+          }
+        },
+        {
+          "widget": "7 Simple linear CV",
+          "rows_evaluated": 405,
+          "models": [
+            "Simple linear RM"
+          ],
+          "metrics": {
+            "RMSE": [
+              6.782739636260822
+            ],
+            "MAE": [
+              4.622681465308256
+            ],
+            "R2": [
+              0.4744406318205332
+            ]
+          }
+        },
+        {
+          "widget": "7 Simple linear holdout",
+          "rows_evaluated": 101,
+          "models": [
+            "Simple linear RM"
+          ],
+          "metrics": {
+            "RMSE": [
+              6.122425585385588
+            ],
+            "MAE": [
+              3.92114789453998
+            ],
+            "R2": [
+              0.4787099297207985
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "source": "8 Holdout predictions",
+          "rows": 101,
+          "features": [
+            "CRIM",
+            "ZN",
+            "INDUS",
+            "CHAS",
+            "NOX",
+            "RM",
+            "AGE",
+            "DIS",
+            "RAD",
+            "TAX",
+            "PTRATIO",
+            "B",
+            "LSTAT"
+          ],
+          "metas": [
+            "Simple linear RM",
+            "Simple linear RM (error)",
+            "Constant baseline",
+            "Constant baseline (error)",
+            "Multiple linear",
+            "Multiple linear (error)",
+            "Shallow tree",
+            "Shallow tree (error)",
+            "Random forest",
+            "Random forest (error)",
+            "Selected"
+          ],
+          "missing_feature_cells": 0
+        },
+        {
+          "source": "6 Multiple linear",
+          "rows": 14,
+          "features": [
+            "coef"
+          ],
+          "metas": [
+            "name"
+          ],
+          "missing_feature_cells": 0
+        },
+        {
+          "source": "7 CV - training only",
+          "rows": 405,
+          "features": [
+            "CRIM",
+            "ZN",
+            "INDUS",
+            "CHAS",
+            "NOX",
+            "RM",
+            "AGE",
+            "DIS",
+            "RAD",
+            "TAX",
+            "PTRATIO",
+            "B",
+            "LSTAT"
+          ],
+          "metas": [
+            "Constant baseline",
+            "Multiple linear",
+            "Shallow tree",
+            "Random forest",
+            "Fold"
+          ],
+          "missing_feature_cells": 0
+        },
+        {
+          "source": "6 Simple linear - RM",
+          "rows": 2,
+          "features": [
+            "coef"
+          ],
+          "metas": [
+            "name"
+          ],
+          "missing_feature_cells": 0
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}
